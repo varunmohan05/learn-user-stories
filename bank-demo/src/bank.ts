@@ -45,4 +45,32 @@ export default class Bank {
 
         return bankAccount;
     }
+
+    /**
+     * Deposits a specified amount of money into the account associated with the given account number.
+     *
+     * @param {string} accountNumber - The account number to deposit money into.
+     * @param {number} amount - The amount of money to deposit. Must be greater than 0.
+     * @returns {number} The updated balance of the account after the deposit.
+     * @throws Will throw an error if the amount is less than or equal to 0, or if the account number is invalid.
+     * The error messages will specify whether the issue is the account number, the amount, or both.
+     */
+    public depositMoney(accountNumber: string, amount: number): number {
+        const bankAccount: BankAccount | undefined = this.isAccountExists(accountNumber);
+
+        if (amount > 0 && bankAccount) {
+            bankAccount.balance += amount
+        } else if (amount <= 0 && bankAccount) {
+            throw new Error(`Invalid Amount! Invalid amount (${amount}) was provided. Amount should be greater than 0.`);
+        } else if (amount > 0 && !bankAccount) {
+            throw new Error(`Invalid Account Number! No account was found for the provided account number ${accountNumber}`);
+        } else {
+            throw new Error(`Invalid Amount and Account Number! Invalid amount (${amount}) was provided. Amount should be greater than 0. 
+                No account was found for the provided account number ${accountNumber}`);
+        }
+
+        return bankAccount.balance
+    } 
+
+    
 }
