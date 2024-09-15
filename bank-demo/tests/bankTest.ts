@@ -15,7 +15,7 @@ if(acc.accountNumber === '123456'){
 // Account Creation scenario 2
 try {
     bank.createAccount('Jane Doe', 25, '123456');
-    console.log('saccount creation scenario 2 failed')
+    console.log('account creation scenario 2 failed')
 } catch {
     console.log('account creation scenario 2 passed')
 } 
@@ -53,4 +53,22 @@ try {
     console.log('deposit scenario 4 failed')
 } catch {
     console.log('deposit scenario 4 passed')
+}
+
+
+// Balance Check 
+
+// Balance Check scenario 1
+if(bank.balanceCheck(acc.accountNumber) === 100){
+    console.log('balance check scenario 1 passed')
+} else {
+    console.log('balance check scenario 1 failed')
+}
+
+// Balance Check scenario 2
+try {
+    bank.balanceCheck('non-existing-account-no')
+    console.log('balance check scenario 2 failed')
+} catch {
+    console.log('balance check scenario 2 passed')
 }

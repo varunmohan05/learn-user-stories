@@ -72,5 +72,18 @@ export default class Bank {
         return bankAccount.balance
     } 
 
-    
+    /**
+     * Checks the balance of the bank account associated with the given account number.
+     *
+     * @param {string} accountNumber - The account number for which the balance is to be checked.
+     * @returns {number} The balance of the account.
+     * @throws Will throw an error if no account is found for the provided account number.
+     */
+    public balanceCheck(accountNumber: string): number {
+        const bankAccount: BankAccount | undefined = this.isAccountExists(accountNumber);
+        if (!bankAccount) {
+            throw new Error(`Invalid Account Number! No account was found for the provided account number ${accountNumber}`);
+        }
+        return bankAccount.balance
+    }
 }
