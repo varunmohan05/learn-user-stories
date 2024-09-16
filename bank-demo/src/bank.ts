@@ -86,4 +86,25 @@ export default class Bank {
         }
         return bankAccount.balance
     }
+
+
+    public withdrawMoney(accountNumber: string, amount: number): number {
+        const bankAccount: BankAccount | undefined = this.isAccountExists(accountNumber);
+
+        if (amount > 0 && bankAccount && (bankAccount.balance-amount)>=0) {
+            bankAccount.balance -= amount
+        } else if (amount <= 0 && bankAccount) {
+            throw new Error(`Invalid Amount! Invalid amount (${amount}) was provided. Amount should be greater than 0.`);
+        } else if (amount > 0 && bankAccount && (bankAccount.balance-amount)<0) {
+            throw new Error(`Insufficient Balance! Withdarawal Amount (${amount}) exceeds the current balance (${bankAccount.balance}).`);    
+        } else if (amount > 0 && !bankAccount) {
+            throw new Error(`Invalid Account Number! No account was found for the provided account number ${accountNumber}`);
+        } else {
+            throw new Error(`Invalid Amount and Account Number! Invalid amount (${amount}) was provided. Amount should be greater than 0. 
+                No account was found for the provided account number ${accountNumber}`);
+        }
+
+        return bankAccount.balance
+    } 
+
 }

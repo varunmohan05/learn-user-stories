@@ -72,3 +72,46 @@ try {
 } catch {
     console.log('balance check scenario 2 passed')
 }
+
+
+// Money Withdraw
+
+// Money Withdraw scenario 1
+
+if(bank.withdrawMoney(acc.accountNumber, 10) === 90){
+    console.log('withdrawal scenario 1 passed')
+} else {
+    console.log('withdrawal scenario 1 failed')
+}
+
+// Money Withdraw scenario 2
+try {
+    bank.withdrawMoney(acc.accountNumber, -1)
+    console.log('withdrawal scenario 2 failed')
+} catch {
+    console.log('withdrawal scenario 2 passed')
+}
+
+// Money Withdraw scenario 3
+try {
+    bank.withdrawMoney(acc.accountNumber, 200)
+    console.log('withdrawal scenario 3 failed')
+} catch {
+    console.log('withdrawal scenario 3 passed')
+}
+
+// Money Withdraw scenario 4
+try {
+    bank.withdrawMoney('non-existing-account-no', 200)
+    console.log('withdrawal scenario 4 failed')
+} catch {
+    console.log('withdrawal scenario 4 passed')
+}
+
+// Money Withdraw scenario 5
+try {
+    bank.depositMoney('non-existing-account-no', -1)
+    console.log('withdrawal scenario 5 failed')
+} catch {
+    console.log('withdrawal scenario 5 passed')
+}
