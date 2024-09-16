@@ -87,7 +87,18 @@ export default class Bank {
         return bankAccount.balance
     }
 
-
+    /**
+     * Withdraws a specified amount of money from the account associated with the given account number.
+     *
+     * @param {string} accountNumber - The account number to withdraw money from.
+     * @param {number} amount - The amount of money to withdraw. Must be greater than 0 and not exceed the current balance.
+     * @returns {number} The updated balance of the account after the withdrawal.
+     * @throws Will throw an error if:
+     *  - The amount is less than or equal to 0.
+     *  - The withdrawal amount exceeds the current account balance.
+     *  - The account number is invalid.
+     * The error messages will provide specific information about the issue, such as the invalid account, amount, or insufficient funds.
+     */
     public withdrawMoney(accountNumber: string, amount: number): number {
         const bankAccount: BankAccount | undefined = this.isAccountExists(accountNumber);
 
